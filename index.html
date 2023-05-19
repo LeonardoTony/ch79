@@ -34,7 +34,6 @@
             const interval = setInterval(() => {
                 if (player.isPlaying()) {
                     clearInterval(interval);
-                    r();
                 } else {
                     player.play();
                 }

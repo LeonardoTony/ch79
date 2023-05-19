@@ -24,15 +24,29 @@
             source: 'https://streamconex.com:1936/mardelplata/mardelplata/playlist.m3u8',
             parentId: "#clappr",
             width: '100vw',
-            height: '100vh',
-            autoPlay: true,
-            mute: true,
-            events: {
-                onPlay: function () {
-                    player.unmute();
-                }
-            }
+            height: '100vh'
         });
+
+        player.getPlugin('poster').$playWrapper.hide();
+
+        const ready = async () => {
+            // why doesn't navigator.permissions expose autoplay?
+            const interval = setInterval(() => {
+                if (player.isPlaying()) {
+                    clearInterval(interval);
+                    r();
+                } else {
+                    player.play();
+                }
+            })
+        }
+
+        if (!player.isReady) {
+            player.on('ready', ready);
+        }
+        else {
+            ready();
+        }
     </script>
 </body>
 

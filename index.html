@@ -40,6 +40,9 @@
             })
         }
 
+        // #stop #play
+        window.onhashchange = () => player[location.hash.slice(1)]()
+
         if (!player.isReady) {
             player.on('ready', ready);
         }

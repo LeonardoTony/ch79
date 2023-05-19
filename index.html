@@ -5,13 +5,16 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>ch79</title>
 
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/clappr@latest/dist/clappr.min.js"></script>
     <style>
         #clappr {
             width: 100%;
             height: 100vh;
+        }
+        video {
+            object-fit: fill; /*stretch to fill the screen*/
         }
     </style>
 </head>
@@ -23,11 +26,12 @@
             disableErrorScreen: true,
             source: 'https://streamconex.com:1936/mardelplata/mardelplata/playlist.m3u8',
             parentId: "#clappr",
-            width: '100vw',
-            height: '100vh'
+            width: '100%',
+            height: '100%'
         });
 
         player.getPlugin('poster').$playWrapper.hide();
+        player.on(Clappr.Events.PLAYER_PLAY, function(){player.core.mediaControl.disable()})
 
         const ready = async () => {
             // why doesn't navigator.permissions expose autoplay?
@@ -37,7 +41,7 @@
                 } else {
                     player.play();
                 }
-            })
+            }, 500)
         }
 
         // #stop #play

@@ -39,11 +39,12 @@
 <body>
     <video id="video"></video>
     <script>
-        const source = [
-            'https://streamconex.com:19360/mardelplata/mardelplata/playlist.m3u8',
-            'https://streamconex.com:19360/santaclara/santaclara/playlist.m3u8',
-            'https://streamconex.com:19360/lacosta/lacosta/playlist.m3u8'
-        ];
+        const sources = [
+            'mardelplata',
+            'santaclara',
+            'lacosta'
+        ].map((v) => `https://streamconex.com:19360/${v}/${v}.m3u8`)
+        
         source.current = 0;
         source.next = 0;
 
